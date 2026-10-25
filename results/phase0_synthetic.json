@@ -1,0 +1,57 @@
+{
+  "experiment": "phase0_ternary_weight_quality_storage",
+  "executed_core_checks": 4,
+  "seed": 20261025,
+  "shape": {
+    "batch": 32,
+    "in_features": 256,
+    "out_features": 256
+  },
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.3.5",
+    "platform": "Linux x86_64"
+  },
+  "fp32_reference_weight_bytes": 262144,
+  "ternary_2bit_packed_plus_fp32_scales_estimate_bytes": 17408,
+  "theoretical_storage_reduction_ratio": 15.0588235294,
+  "threshold_sweep": [
+    {
+      "threshold_ratio": 0.3,
+      "nonzero_fraction": 0.8092346191,
+      "relative_l2_error": 0.5038793087,
+      "output_mae": 6.5063161849
+    },
+    {
+      "threshold_ratio": 0.5,
+      "nonzero_fraction": 0.6880187988,
+      "relative_l2_error": 0.4555059671,
+      "output_mae": 5.8340010643
+    },
+    {
+      "threshold_ratio": 0.7,
+      "nonzero_fraction": 0.5756835938,
+      "relative_l2_error": 0.4339715838,
+      "output_mae": 5.5565257072
+    },
+    {
+      "threshold_ratio": 0.9,
+      "nonzero_fraction": 0.4726715088,
+      "relative_l2_error": 0.4421343803,
+      "output_mae": 5.6641330719
+    },
+    {
+      "threshold_ratio": 1.1,
+      "nonzero_fraction": 0.3805541992,
+      "relative_l2_error": 0.4746843874,
+      "output_mae": 6.119056064
+    }
+  ],
+  "decision": "Storage potential is promising; naive post-training ternarization produces high output error (best relative L2 error 43.4% in tested sweep). Do not proceed to hardware claims. Next gate: real model/task evaluation with calibration or quantization-aware training.",
+  "limitations": [
+    "Synthetic Gaussian weights and inputs, not a trained neural network.",
+    "Storage figure is theoretical 2-bit packing plus FP32 per-output scales.",
+    "No speed, energy, power, or silicon-area claims.",
+    "Timing is excluded because ordinary NumPy matrix multiplication is not a ternary kernel."
+  ]
+}
